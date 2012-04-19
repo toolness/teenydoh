@@ -11,7 +11,7 @@ self-contained within the project's code repository.
 
 Just run this at the terminal prompt:
 
-    cd frodoh
+    cd teenydoh
     python manage.py runserver
 
 Then, point your browser to http://localhost:8000/.

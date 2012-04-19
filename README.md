@@ -1,10 +1,21 @@
-This is a simple framework for building fully static, internationalized
-websites. If dynamic functionality is needed, a migration path to
+Teenydoh is a simple framework for building fully static, internationalized
+websites. If dynamic server-side functionality is needed, a migration path to
 [Playdoh][] is available.
+
+  [Playdoh]: https://github.com/mozilla/playdoh
+
+## Use Cases
+
+Teenydoh is currently the foundation for the following websites:
+
+  * [hackasaurus.org](http://hackasaurus.org/)
+    ([github](https://github.com/hackasaurus/hackasaurus.org))
+  * [openbadges.org](http://openbadges.org/)
+    ([github](https://github.com/mozilla/openbadges.org))
 
 ## Prerequisites
 
-You need Python version 2.6 or higher. All other dependencies are
+You just need Python version 2.6 or higher. All other dependencies are
 self-contained within the project's code repository.
 
 ## Setup
@@ -25,7 +36,7 @@ located at `/<locale>/` on the web site, where `<locale>` is the name of a
 locale like `en-US`. The single exception to this is the file 
 `templates/locale-redirector.html`, which is used to redirect a non-localized 
 pathname to a localized one (e.g., redirecting `/goggles/` to 
-`/en-US/goggles`).
+`/en-US/goggles/`).
 
 The following template variables are defined:
 

@@ -18,22 +18,35 @@ Then, point your browser to http://localhost:8000/.
 
 ## Development
 
-All static, unlocalized files are in the `static` directory, which are
-placed at the root of the web site. The `templates` directory
-contains localized [Jinja2][] templates that are located at `/<locale>/` on
-the web site, where `<locale>` is the name of a locale like `en-US`. The
-single exception to this is the file `templates/locale-redirector.html`,
-which is used to redirect a non-localized pathname to a localized one (e.g.,
-redirecting `/goggles/` to `/en-US/goggles`).
+All static, unlocalized files are in the `static` directory.
 
-Whenever you need to link to a localized template, you can do so either via
-a relative URL or an absolute one that begins with the template variable
-`{{ LOCALE_ROOT }}`.
+The `templates` directory contains localized [Jinja2][] templates that are
+located at `/<locale>/` on the web site, where `<locale>` is the name of a 
+locale like `en-US`. The single exception to this is the file 
+`templates/locale-redirector.html`, which is used to redirect a non-localized 
+pathname to a localized one (e.g., redirecting `/goggles/` to 
+`/en-US/goggles`).
 
-Whenever you need to link to a static file, please use the `{{ STATIC_URL }}` 
-template variable. While this is almost always set to the root directory
-of your website, it may change, especially if you migrate your site to
-Playdoh.
+The following template variables are defined:
+
+* `{{ LOCALE_ROOT }}` is the locale-specific root of the site. Whenever you 
+  need to link to a localized template, you can do so either via a relative
+  URL or an absolute one that begins with this template variable. An example
+  value for this variable is `/en-US/`.
+
+* `{{ STATIC_URL }}` is the root directory for the files in your site's
+  `static` directory. Example values of this are `/` and `/static/`.
+
+* `{{ LANGUAGES }}` is a dictionary of all available languages, such as 
+  `{'en-us': 'English (US)'}`.
+
+* `{{ LANG }}` is the currently active language code, such as `en-US`.
+
+* `{{ DIR }}` is `ltr` if the active language reads left-to-right. Otherwise, 
+  it is `rtl`.
+
+* `{{ settings }}` contains all the variables, if any, defined in your
+  site's `settings.py`.
 
   [Jinja2]: http://jinja.pocoo.org/
 

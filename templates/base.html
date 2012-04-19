@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html LANG="{{ current_locale }}" dir="{{ current_locale.direction }}">
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <title>{% block page_title %}frodoh example{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+
+    <div id="footer">
+      {% include "language-selector.html" %}
+    </div>
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/localize.js"></script>
+  </body>
+</html>

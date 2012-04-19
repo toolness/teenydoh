@@ -66,9 +66,7 @@ serves static files, such as Apache or Amazon S3.
 
 ## Playdoh Migration
 
-Migrating a site to [Playdoh][] is fairly straightforward due to the
-above design philosophy. It requires no dependencies, aside from Playdoh
-itself.
+Migrating a site to [Playdoh][] is fairly straightforward. It requires no dependencies, aside from Playdoh itself.
 
 You'll want to create a new Django app in your Playdoh project and do
 the following:
@@ -82,24 +80,12 @@ the following:
 3. Copy any site-specific configuration variables from this site's
    `settings.py` into the Django project's `settings.py`.
 
-4. Fill the Django app's `views.py` with the following helpers:
+4. Fill the Django app's `views.py` with the following:
 
 ```python
 from django.shortcuts import render
 from django.conf import settings
 from funfactory.context_processors import i18n
-
-class Locale(object):
-    """
-    Simple shim class to make locale code in templates work.
-    """
-    
-    def __init__(self, locale, display_name):
-        self.locale = locale
-        self.display_name = display_name
-
-    def __str__(self):
-        return self.locale
 
 def page(filename):
     """
@@ -109,16 +95,9 @@ def page(filename):
     
     def view(request):
         info = i18n(request)
-        locales = {}
-        for locale, display_name in info['LANGUAGES'].items():
-            locales[locale] = Locale(locale, display_name)
-        currlocale = locales[info['LANG'].lower()]
-
         return render(request, filename, {
             'STATIC_URL': settings.STATIC_URL,
-            'locales': locales.values(),
-            'current_locale': currlocale,
-            'LOCALE_ROOT': '/%s/' % currlocale
+            'LOCALE_ROOT': '/%s/' % info['LANG']
         })
     
     return view
@@ -139,7 +118,7 @@ def page(filename):
 This should expose *only* the site's home page to the Playdoh app. To
 expose more pages, you'll need to add to `urlpatterns`.
 
-You *should* be able to just copy the `.po` files from this site into
+You *should* be able to just copy the `.po` files from your site into
 the Django project and everything will magically work. However, this hasn't
 yet been tested.
 

@@ -22,6 +22,7 @@ self-contained within the project's code repository.
 
 Just run this at the terminal prompt:
 
+    git clone git://github.com/toolness/teenydoh.git
     cd teenydoh
     python manage.py runserver
 

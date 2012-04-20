@@ -18,6 +18,8 @@ Teenydoh is currently the foundation for the following websites:
 You just need Python version 2.6 or higher. All other dependencies are
 self-contained within the project's code repository.
 
+Teenydoh has been tested to work under Windows, OS X, and Linux.
+
 ## Setup
 
 Just run this at the terminal prompt:

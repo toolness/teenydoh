@@ -145,7 +145,8 @@ class LocalizedTemplateServer(object):
             env.install_gettext_translations(wsgi_env['translation'])
         else:
             env.install_null_translations(newstyle=True)
-        template = env.get_template(fullpath[len(root_dir):])
+        template_path = fullpath[len(root_dir):].replace(os.path.sep, '/')
+        template = env.get_template(template_path)
         return ('text/html', template.render().encode('utf-8'))
 
 def run_server(port, static_files_dir, template_dir,

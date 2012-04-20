@@ -34,10 +34,8 @@ All static, unlocalized files are in the `static` directory.
 
 The `templates` directory contains localized [Jinja2][] templates that are
 located at `/<locale>/` on your web site, where `<locale>` is the name of a 
-locale like `en-US`. The single exception to this is the file 
-`templates/locale-redirector.html`, which is used to redirect a non-localized 
-pathname to a localized one (e.g., redirecting `/goggles/` to 
-`/en-US/goggles/`).
+locale like `en-US`. The single exception to this is the locale redirector
+template, explained later in this document.
 
 The following template variables are defined:
 
@@ -59,6 +57,20 @@ The following template variables are defined:
 
 * `{{ settings }}` contains all the variables, if any, defined in your
   site's `settings.py`.
+
+### The Locale Redirector Template
+
+The locale redirector template at `templates/locale-redirector.html` is
+used to redirect a non-localized pathname to a localized one (e.g., 
+redirecting `/goggles/` to `/en-US/goggles/`). It's automatically generated
+for any path containing a localized template called `index.html`.
+
+The path that the redirector must redirect to is in the
+`{{ PATH_INFO }}` template variable. This template doesn't have `{{ LANG }}`
+or `{{ DIR }}` defined, because the actual locale isn't known at the time
+that this template is accessed: since the generated site is entirely static
+content capable of being served from any stock server, content negotiation
+must occur on the client-side using JavaScript.
 
   [Jinja2]: http://jinja.pocoo.org/
 

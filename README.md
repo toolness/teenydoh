@@ -65,8 +65,8 @@ The following template variables are defined:
 ## Testing
 
 When writing JavaScript code, you can add unit tests in the `static/test` 
-directory. These [QUnit][] tests can be run from the development server at  
-[localhost:8000/test][].
+directory. These [QUnit][] tests can be run from the development server
+at [localhost:8000/test][].
 
   [QUnit]: http://docs.jquery.com/Qunit
   [localhost:8000/test]: http://localhost:8000/test/

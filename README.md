@@ -64,9 +64,9 @@ The following template variables are defined:
 
 ## Testing
 
-When writing JavaScript code, please try to make it testable and add
-a unit test for it in the `static/test` directory. These [QUnit][]
-tests can be run from the development server at  [localhost:8000/test][].
+When writing JavaScript code, you can add unit tests in the `static/test` 
+directory. These [QUnit][] tests can be run from the development server at  
+[localhost:8000/test][].
 
   [QUnit]: http://docs.jquery.com/Qunit
   [localhost:8000/test]: http://localhost:8000/test/
@@ -76,8 +76,25 @@ tests can be run from the development server at  [localhost:8000/test][].
 The site uses GNU gettext for localization via [Babel][] and Jinja2's
 [i18n extension][].
 
+To create a new locale for e.g. Hebrew (`he`), run:
+
+    python manage.py makemessages -l he
+
+Then, edit `locale/he/LC_MESSAGES/messages.po` as needed. When you're done
+localizing, run:
+
+    python manage.py compilemessages
+
+This will convert all available `.po` files into `.mo` files. The next
+time you run the development server or rebuild the static site, your new
+translations will be used.
+
+You can also use a site like [localize.mozilla.org][] to make it easy
+for community members to contribute localizations.
+
   [Babel]: http://babel.edgewall.org/
   [i18n extension]: http://jinja.pocoo.org/docs/templates/#extensions
+  [localize.mozilla.org]: http://localize.mozilla.org/
 
 ## Deployment
 

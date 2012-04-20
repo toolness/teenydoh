@@ -1,4 +1,4 @@
-Teenydoh is a simple framework for building fully static, internationalized
+Teenydoh is a simple tool for building fully static, internationalized
 websites. If dynamic server-side functionality is needed, a migration path to
 [Playdoh][] is available.
 
@@ -33,7 +33,7 @@ Then, point your browser to http://localhost:8000/.
 All static, unlocalized files are in the `static` directory.
 
 The `templates` directory contains localized [Jinja2][] templates that are
-located at `/<locale>/` on the web site, where `<locale>` is the name of a 
+located at `/<locale>/` on your web site, where `<locale>` is the name of a 
 locale like `en-US`. The single exception to this is the file 
 `templates/locale-redirector.html`, which is used to redirect a non-localized 
 pathname to a localized one (e.g., redirecting `/goggles/` to 
@@ -41,7 +41,7 @@ pathname to a localized one (e.g., redirecting `/goggles/` to
 
 The following template variables are defined:
 
-* `{{ LOCALE_ROOT }}` is the locale-specific root of the site. Whenever you 
+* `{{ LOCALE_ROOT }}` is the locale-specific root of your site. Whenever you 
   need to link to a localized template, you can do so either via a relative
   URL or an absolute one that begins with this template variable. An example
   value for this variable is `/en-US/`.
@@ -73,7 +73,7 @@ at [localhost:8000/test][].
 
 ## Localization
 
-The site uses GNU gettext for localization via [Babel][] and Jinja2's
+Teenydoh uses GNU gettext for localization via [Babel][] and Jinja2's
 [i18n extension][].
 
 To create a new locale for e.g. Hebrew (`he`), run:
@@ -102,7 +102,7 @@ Run this at the terminal prompt:
 
     python manage.py build
     
-This will create a static version of the site, for all supported locales, in 
+This will create a static version of your site, for all supported locales, in 
 the `dist` directory. You can copy this directory to any web server that 
 serves static files, such as Apache or Amazon S3.
 
@@ -113,13 +113,13 @@ Migrating a site to [Playdoh][] is fairly straightforward. It requires no depend
 You'll want to create a new Django app in your Playdoh project and do
 the following:
 
-1. Recursively copy this site's `static` and `templates` directories into the
+1. Recursively copy your site's `static` and `templates` directories into the
    Django app.
 
 2. Delete `templates/locale-redirector.html` from the Django app, 
    as Playdoh will now take care of locale redirection for you.
 
-3. Copy any site-specific configuration variables from this site's
+3. Copy any site-specific configuration variables from your site's
    `settings.py` into the Django project's `settings.py`.
 
 4. Fill the Django app's `views.py` with the following:
@@ -157,7 +157,7 @@ def page(filename):
     )
 ```
 
-This should expose *only* the site's home page to the Playdoh app. To
+This should expose *only* your site's home page to the Playdoh app. To
 expose more pages, you'll need to add to `urlpatterns`.
 
 You *should* be able to just copy the `.po` files from your site into
